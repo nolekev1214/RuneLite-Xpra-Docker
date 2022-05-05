@@ -1,0 +1,16 @@
+#!/bin/bash
+
+while true
+do
+    # Run RuneLite.
+    java -jar /usr/local/bin/RuneLite.jar
+
+    # Give RuneLite a few seconds to boot up.
+    sleep 20
+
+    # Find the PID of RuneLite client process.
+    RUNELITE_PID=$(pidof java)
+
+    # Wait until the User exits the RuneLite client session.
+    tail --pid=$RUNELITE_PID -f /dev/null
+done
